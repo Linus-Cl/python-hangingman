@@ -1,7 +1,4 @@
 
-from operator import contains
-
-
 word = "youtube"
 word_length = len(word)
 discovered_letter_indexes = []
@@ -28,7 +25,6 @@ def get_letter_placements(letter):
     indexes = []
     letter_not_found = False
     lower_search_limmit = 0
-
     while not letter_not_found:
         index = word.find(letter, lower_search_limmit)
         if index == -1:
@@ -56,7 +52,6 @@ def get_current_word_state():
         else:
             current_word_state += "_"
 
-    # print(current_word_state)
     return current_word_state
 
 
