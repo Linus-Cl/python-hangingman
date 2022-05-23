@@ -1,10 +1,15 @@
 
-word = "youtube"
+word = "youtube"  # placeholder
 word_length = len(word)
 discovered_letter_indexes = []
 
 
 def get_single_letter_input():
+    """
+    Returns the letter given by the user.
+
+    Gets a single letter as input and checks wether it is a valid input by checking its length.    
+    """
     print("Enter your Guess: ")
     letter_input = input()
     if len(letter_input) == 1:
@@ -15,6 +20,9 @@ def get_single_letter_input():
 
 
 def check_if_word_contains_letter(letter):
+    """
+    Returns wether the given letter is in the searched word or not.
+    """
     if not letter in word:
         return False
     else:
@@ -22,9 +30,14 @@ def check_if_word_contains_letter(letter):
 
 
 def get_letter_placements(letter):
+    """
+    Returns all positions of letter in word as a list.
+    """
     indexes = []
     letter_not_found = False
     lower_search_limmit = 0
+
+    # Loop through the word until the Letter is not found anymore.
     while not letter_not_found:
         index = word.find(letter, lower_search_limmit)
         if index == -1:
@@ -38,6 +51,9 @@ def get_letter_placements(letter):
 
 
 def user_loop():
+    """
+    A Loop of all actions performed following the input of a single letter.
+    """
     letter = get_single_letter_input()
     check_if_word_contains_letter(letter)
     discovered_letter_indexes[:] = discovered_letter_indexes + \
@@ -45,6 +61,9 @@ def user_loop():
 
 
 def get_current_word_state():
+    """
+    Returns a string representing all letters that have been guessed so far.
+    """
     current_word_state = ""
     for index in range(word_length):
         if index in discovered_letter_indexes:
@@ -56,6 +75,9 @@ def get_current_word_state():
 
 
 def main():
+    """
+    Main Loop of the whole program that ends when the word is found.
+    """
     word_found = False
     while(not word_found):
         user_loop()
