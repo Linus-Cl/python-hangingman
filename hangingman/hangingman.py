@@ -1,8 +1,10 @@
 
-ais_turn = False
-word = "Youtube"
+from operator import contains
+
+
+word = "youtube"
 word_length = len(word)
-discovered_letter_indexes = [1]
+discovered_letter_indexes = []
 
 
 def get_single_letter_input():
@@ -42,11 +44,11 @@ def get_letter_placements(letter):
 def user_loop():
     letter = get_single_letter_input()
     check_if_word_contains_letter(letter)
-    discovered_letter_indexes = discovered_letter_indexes + \
+    discovered_letter_indexes[:] = discovered_letter_indexes + \
         get_letter_placements(letter)
 
 
-def print_current_word_state():
+def get_current_word_state():
     current_word_state = ""
     for index in range(word_length):
         if index in discovered_letter_indexes:
@@ -54,12 +56,20 @@ def print_current_word_state():
         else:
             current_word_state += "_"
 
-    print(current_word_state)
+    # print(current_word_state)
+    return current_word_state
 
 
-user_loop()
-print_current_word_state()
+def main():
+    word_found = False
+    while(not word_found):
+        user_loop()
+        current_word_state = get_current_word_state()
+        print(current_word_state)
+        if not '_' in current_word_state:
+            word_found = True
+
+    print("Word Found!")
 
 
-# for x in positions:
-#     print(x)
+main()
