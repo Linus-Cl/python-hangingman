@@ -1,7 +1,19 @@
 
-word = "youtube"  # placeholder
-word_length = len(word)
+from random import randint
+
 discovered_letter_indexes = []
+
+
+def get_english_word():
+    current_file = open('words.txt', 'r')
+    random_index = randint(1, 370105)
+    random_word = current_file.readline(random_index)
+    current_file.close()
+    return random_word
+
+
+word = get_english_word()
+word_length = len(word)
 
 
 def get_single_letter_input():
