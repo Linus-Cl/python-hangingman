@@ -18,6 +18,18 @@ word = get_english_word()
 word_length = len(word)
 
 
+def get_unique_letter_count(given_word):
+    """
+    Returns the amount of unique letters in the given string.
+    """
+    letter_list = []
+    for index in range(len(given_word)):
+        if not given_word[index] in letter_list:
+            letter_list.append(given_word[index])
+
+    return len(letter_list)
+
+
 def get_single_letter_input():
     """
     Returns the letter given by the user.
@@ -90,17 +102,21 @@ def get_current_word_state():
 
 def main():
     """
-    Main Loop of the whole program that ends when the word is found.
+    Main Loop of the whole program.
     """
     word_found = False
-    while(not word_found):
+    guess_limmit = get_unique_letter_count(word)*2
+    for i in range(guess_limmit):
         user_loop()
         current_word_state = get_current_word_state()
         print(current_word_state)
         if not '_' in current_word_state:
-            word_found = True
+            print("Word Found!")
+            return 0
 
-    print("Word Found!")
+    print("No guesses left!")
+    print("The word was "+word)
+    return 0
 
 
 main()
